@@ -1,23 +1,23 @@
 ﻿using Weasel.Postgresql;
 using Weasel.Postgresql.Tables;
-using Weasel.Quartz.Internal;
+using Weasel.Quartz.Postgres.Internal;
 
-namespace Weasel.Quartz.Tables;
+namespace Weasel.Quartz.Postgres.Tables;
 
-internal class QrtzSimpleTriggersTable : QuartzTable
+internal sealed class QrtzBlobTriggersTable : QuartzTable
 {
-    public const string TableName = "qrtz_simple_triggers";
+    public const string TableName = "qrtz_blob_triggers";
     
-    public QrtzSimpleTriggersTable(string schema) : base(schema, TableName)
+    public QrtzBlobTriggersTable(string schema) : base(schema, TableName)
     {
+        PrimaryKeyName = "qrtz_blob_triggers_pkey";
+        
         AddColumn("sched_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_group", "text").NotNull().AsPrimaryKey();
-        AddColumn("repeat_count", "bigint").NotNull();
-        AddColumn("repeat_interval", "bigint").NotNull();
-        AddColumn("times_triggered", "bigint").NotNull();
+        AddColumn("blob_data", "bytea").AllowNulls();
         
-        ForeignKeys.Add(new ForeignKey("qrtz_simple_triggers_sched_name_trigger_name_trigger_group_fkey")
+        ForeignKeys.Add(new ForeignKey("qrtz_blob_triggers_sched_name_trigger_name_trigger_group_fkey")
         {
             ColumnNames = ["sched_name", "trigger_name", "trigger_group"],
             LinkedNames = ["sched_name", "trigger_name", "trigger_group"],

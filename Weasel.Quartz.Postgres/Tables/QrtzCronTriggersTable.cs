@@ -1,21 +1,24 @@
 ﻿using Weasel.Postgresql;
 using Weasel.Postgresql.Tables;
-using Weasel.Quartz.Internal;
+using Weasel.Quartz.Postgres.Internal;
 
-namespace Weasel.Quartz.Tables;
+namespace Weasel.Quartz.Postgres.Tables;
 
-internal class QrtzBlobTriggersTable : QuartzTable
+internal sealed class QrtzCronTriggersTable : QuartzTable
 {
-    public const string TableName = "qrtz_blob_triggers";
+    public const string TableName = "qrtz_cron_triggers";
     
-    public QrtzBlobTriggersTable(string schema) : base(schema, TableName)
+    public QrtzCronTriggersTable(string schema) : base(schema, TableName)
     {
+        PrimaryKeyName = "qrtz_cron_triggers_pkey";
+        
         AddColumn("sched_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_group", "text").NotNull().AsPrimaryKey();
-        AddColumn("blob_data", "bytea").AllowNulls();
+        AddColumn("cron_expression", "text").NotNull();
+        AddColumn("time_zone_id", "text").AllowNulls();
         
-        ForeignKeys.Add(new ForeignKey("qrtz_blob_triggers_sched_name_trigger_name_trigger_group_fkey")
+        ForeignKeys.Add(new ForeignKey("qrtz_cron_triggers_sched_name_trigger_name_trigger_group_fkey")
         {
             ColumnNames = ["sched_name", "trigger_name", "trigger_group"],
             LinkedNames = ["sched_name", "trigger_name", "trigger_group"],

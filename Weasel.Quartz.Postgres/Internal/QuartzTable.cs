@@ -1,7 +1,7 @@
 ﻿using Weasel.Postgresql;
 using Weasel.Postgresql.Tables;
 
-namespace Weasel.Quartz.Internal;
+namespace Weasel.Quartz.Postgres.Internal;
 
 internal abstract class QuartzTable : Table
 {

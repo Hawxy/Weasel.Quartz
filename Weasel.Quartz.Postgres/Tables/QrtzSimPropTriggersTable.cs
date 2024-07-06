@@ -1,15 +1,17 @@
 ﻿using Weasel.Postgresql;
 using Weasel.Postgresql.Tables;
-using Weasel.Quartz.Internal;
+using Weasel.Quartz.Postgres.Internal;
 
-namespace Weasel.Quartz.Tables;
+namespace Weasel.Quartz.Postgres.Tables;
 
-internal class QrtzSimpropTriggersTable : QuartzTable
+internal sealed  class QrtzSimpropTriggersTable : QuartzTable
 {
     public const string TableName = "qrtz_simprop_triggers";
     
     public QrtzSimpropTriggersTable(string schema) : base(schema, TableName)
     {
+        PrimaryKeyName = "qrtz_simprop_triggers_pkey";
+        
         AddColumn("sched_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_group", "text").NotNull().AsPrimaryKey();
@@ -26,7 +28,7 @@ internal class QrtzSimpropTriggersTable : QuartzTable
         AddColumn("bool_prop_2", "bool").AllowNulls();
         AddColumn("time_zone_id", "text").AllowNulls();
         
-        ForeignKeys.Add(new ForeignKey("qrtz_simprop_triggers_sched_name_trigger_name_trigger_group_fkey")
+        ForeignKeys.Add(new ForeignKey("qrtz_simprop_triggers_sched_name_trigger_name_trigger_grou_fkey")
         {
             ColumnNames = ["sched_name", "trigger_name", "trigger_group"],
             LinkedNames = ["sched_name", "trigger_name", "trigger_group"],

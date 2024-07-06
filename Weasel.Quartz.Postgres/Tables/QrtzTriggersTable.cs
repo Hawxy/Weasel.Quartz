@@ -1,15 +1,17 @@
 ﻿using Weasel.Postgresql;
 using Weasel.Postgresql.Tables;
-using Weasel.Quartz.Internal;
+using Weasel.Quartz.Postgres.Internal;
 
-namespace Weasel.Quartz.Tables;
+namespace Weasel.Quartz.Postgres.Tables;
 
-internal class QrtzTriggersTable : QuartzTable
+internal sealed class QrtzTriggersTable : QuartzTable
 {
     public const string TableName = "qrtz_triggers";
     
     public QrtzTriggersTable(string schema) : base(schema, TableName)
     {
+        PrimaryKeyName = "qrtz_triggers_pkey";
+        
         AddColumn("sched_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_name", "text").NotNull().AsPrimaryKey();
         AddColumn("trigger_group", "text").NotNull().AsPrimaryKey();

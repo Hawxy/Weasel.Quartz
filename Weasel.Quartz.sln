@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weasel.Quartz", "Weasel.Quartz\Weasel.Quartz.csproj", "{D475E6B1-C082-433D-B5C3-B418781C8674}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weasel.Quartz.Postgres", "Weasel.Quartz.Postgres\Weasel.Quartz.Postgres.csproj", "{D475E6B1-C082-433D-B5C3-B418781C8674}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weasel.Quartz.Tests", "Weasel.Quartz.Tests\Weasel.Quartz.Tests.csproj", "{656B9E23-A4DD-4E38-9809-42C6D88B825E}"
 EndProject

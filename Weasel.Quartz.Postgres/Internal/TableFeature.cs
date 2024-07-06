@@ -2,9 +2,9 @@
 using Weasel.Core.Migrations;
 using Weasel.Postgresql.Tables;
 
-namespace Weasel.Quartz.Internal;
+namespace Weasel.Quartz.Postgres.Internal;
 
-internal class TableFeature: FeatureSchemaBase
+internal sealed class TableFeature: FeatureSchemaBase
 {
     public Dictionary<string, Table> Tables { get; } = new();
 
