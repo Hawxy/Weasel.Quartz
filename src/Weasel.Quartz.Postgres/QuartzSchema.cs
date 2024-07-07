@@ -14,11 +14,11 @@ namespace Weasel.Quartz.Postgres;
 public static class QuartzSchema
 {
     /// <summary>
-    /// 
+    /// Returns all Quartz tables. Useful for plugging into Marten managed schema.
     /// </summary>
-    /// <param name="schema"></param>
-    /// <returns></returns>
-    public static Table[] AllTables(string? schema)
+    /// <param name="schema">The schema for the applied tables. Defaults to the postgres default "public" if not provided.</param>
+    /// <returns>An array of tables.</returns>
+    public static Table[] AllTables(string? schema = null)
     {
         schema ??= PostgresqlProvider.Instance.DefaultDatabaseSchemaName;
         
@@ -38,11 +38,11 @@ public static class QuartzSchema
     }
     
     /// <summary>
-    /// 
+    /// Creates a <see cref="QuartzDatabase"/> that can be used to managed migrations against the target database.
     /// </summary>
-    /// <param name="dataSource"></param>
-    /// <param name="schema"></param>
-    /// <param name="logger"></param>
+    /// <param name="dataSource">A data source for the intended database.</param>
+    /// <param name="schema">The schema for the applied tables. Defaults to the postgres default "public" if not provided.</param>
+    /// <param name="logger">An optional <see cref="ILogger"/> for managed logging capability.</param>
     /// <returns></returns>
     public static IDatabase<NpgsqlConnection> Create(NpgsqlDataSource dataSource, string? schema = null, ILogger? logger = null)
     {
@@ -54,11 +54,11 @@ public static class QuartzSchema
     }
     
     /// <summary>
-    /// 
+    /// Creates a <see cref="QuartzDatabase"/> that can be used to managed migrations against the target database.
     /// </summary>
-    /// <param name="connectionString"></param>
-    /// <param name="schema"></param>
-    /// <param name="logger"></param>
+    /// <param name="connectionString">A connection string for the intended database.</param>
+    /// <param name="schema">The schema for the applied tables. Defaults to the postgres default "public" if not provided.</param>
+    /// <param name="logger">An optional <see cref="ILogger"/> for managed logging capability.</param>
     /// <returns></returns>
     public static IDatabase<NpgsqlConnection> Create(string connectionString, string? schema = null, ILogger? logger = null)
     {
