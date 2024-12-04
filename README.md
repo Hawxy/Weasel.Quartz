@@ -24,10 +24,7 @@ Quartz schema can be added to Marten's own schema management via its configurati
 
 ```csharp
 // A custom Postgres schema can be optionally provided as a parameter.
-foreach (var table in QuartzSchema.AllTables())
-{
-    options.Storage.ExtendedSchemaObjects.Add(table); 
-}
+options.Storage.ExtendedSchemaObjects.AddRange(QuartzSchema.AllTables()); 
 ```
 
 ## Future updates
