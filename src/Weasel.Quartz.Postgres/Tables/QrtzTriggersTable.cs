@@ -18,27 +18,46 @@ internal sealed class QrtzTriggersTable : QuartzTable
         AddColumn("job_name", "text").NotNull();
         AddColumn("job_group", "text").NotNull();
         AddColumn("description", "text").AllowNulls();
-        AddColumn("next_fire_time", "bigint").AllowNulls().AddIndex(c=> c.Name = "idx_qrtz_t_next_fire_time");
+        AddColumn("next_fire_time", "bigint").AllowNulls();
         AddColumn("prev_fire_time", "bigint").AllowNulls();
         AddColumn("priority", "integer").AllowNulls();
-        AddColumn("trigger_state", "text").NotNull().AddIndex(c => c.Name = "idx_qrtz_t_state");
+        AddColumn("trigger_state", "text").NotNull();
         AddColumn("trigger_type", "text").NotNull();
         AddColumn("start_time", "bigint").NotNull();
         AddColumn("end_time", "bigint").AllowNulls();
         AddColumn("calendar_name", "text").AllowNulls();
         AddColumn("misfire_instr", "smallint").AllowNulls();
+        AddColumn("misfire_orig_fire_time", "bigint").AllowNulls();
+        AddColumn("execution_group", "varchar(200)").AllowNulls();
+        AddColumn("preferred_node", "varchar(200)").AllowNulls();
+        AddColumn("preferred_node_auto", "bool").NotNull().DefaultValueByExpression("FALSE");
         AddColumn("job_data", "bytea").AllowNulls();
-        
+
         ForeignKeys.Add(new ForeignKey("qrtz_triggers_sched_name_job_name_job_group_fkey")
         {
             ColumnNames = ["sched_name", "job_name", "job_group"],
             LinkedNames = ["sched_name", "job_name", "job_group"],
-            LinkedTable = new PostgresqlObjectName(schema, "qrtz_job_details")
+            LinkedTable = new PostgresqlObjectName(schema, "qrtz_job_details", SchemaUtils.IdentifierUsage.General)
         });
-        
+
+        Indexes.Add(new IndexDefinition("idx_qrtz_t_j")
+        {
+            Columns = ["sched_name", "job_name", "job_group"]
+        });
+
+        Indexes.Add(new IndexDefinition("idx_qrtz_t_c")
+        {
+            Columns = ["sched_name", "calendar_name"]
+        });
+
+        Indexes.Add(new IndexDefinition("idx_qrtz_t_g_n")
+        {
+            Columns = ["sched_name", "trigger_group", "trigger_name"]
+        });
+
         Indexes.Add(new IndexDefinition("idx_qrtz_t_nft_st")
         {
-            Columns = ["next_fire_time", "trigger_state"]
+            Columns = ["sched_name", "trigger_state", "next_fire_time"]
         });
     }
 }

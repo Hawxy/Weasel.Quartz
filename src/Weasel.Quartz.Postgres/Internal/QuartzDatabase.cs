@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using JasperFx;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using Weasel.Core;
 using Weasel.Core.Migrations;

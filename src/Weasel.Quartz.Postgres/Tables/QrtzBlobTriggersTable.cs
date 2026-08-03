@@ -21,7 +21,7 @@ internal sealed class QrtzBlobTriggersTable : QuartzTable
         {
             ColumnNames = ["sched_name", "trigger_name", "trigger_group"],
             LinkedNames = ["sched_name", "trigger_name", "trigger_group"],
-            LinkedTable = new PostgresqlObjectName(schema, "qrtz_triggers"),
+            LinkedTable = new PostgresqlObjectName(schema, "qrtz_triggers", SchemaUtils.IdentifierUsage.General),
             OnDelete = CascadeAction.Cascade
         });
     }

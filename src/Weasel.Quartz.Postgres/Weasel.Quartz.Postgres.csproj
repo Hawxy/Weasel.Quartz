@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -10,14 +10,14 @@
         <PackageId>Weasel.Quartz.Postgres</PackageId>
         <Description>Runtime migrations for Quartz.NET Postgres Schema</Description>
         <PackageTags>weasel,quartz,postgres</PackageTags>
-        <Version>3.0.0</Version>
+        <Version>3.19.0</Version>
         <Authors>Hawxy</Authors>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/Hawxy/Weasel.Quartz</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Hawxy/Weasel.Quartz</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <Copyright>Hawxy 2024</Copyright>
+        <Copyright>Hawxy 2024-2026</Copyright>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
@@ -27,11 +27,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Weasel.Postgresql" Version="7.4.1" />
+      <PackageReference Include="Weasel.Postgresql" Version="9.23.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.4" PrivateAssets="All" />
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>

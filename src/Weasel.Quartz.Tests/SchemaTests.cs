@@ -1,3 +1,4 @@
+using JasperFx;
 using Npgsql;
 using Weasel.Core;
 using Weasel.Quartz.Postgres;
