@@ -2,6 +2,8 @@
 
 [![Nuget](https://img.shields.io/nuget/v/Weasel.Quartz.Postgres?label=Weasel.Quartz.Postgres&style=flat-square)](https://www.nuget.org/packages/Weasel.Quartz.Postgres)
 
+### Obsolete Notice: `Quartz.Weasel.PostgreSQL` is now maintained as part of Quartz and available in 4.3 onwards. Please migrate.
+
 This package provides runtime Postgres SQL initialization & migration for Quartz.NET.
 
 Schema updates can be executed standalone or as part of Marten's migration execution.
